@@ -10,6 +10,6 @@
 <body>
 <h1>about Form view . {{$id ?? 'not fourn'}}</h1>
 
-<a href="{{url('home')}}">Home</a>
+<a href="{{url('/')}}">Home</a>
 </body>
 </html>
