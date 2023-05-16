@@ -39,9 +39,8 @@ class CategoryController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrfail($id);
         return view('categories.edit', compact('category'));
     }
 
@@ -59,11 +58,13 @@ class CategoryController extends Controller
         return redirect(url('categories'))->with('success', 'Category has been updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrfail($id);
+
         $category->delete();
         return redirect(url('categories'))->with('success', 'Category has been deleted successfully');
     }
 }
+
+
 

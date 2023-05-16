@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="mx-auto col-8 m-5">
-            <h1>Add New Category</h1>
+            <h1> Update Category</h1>
             <a href="{{url('/categories')}}" class="btn btn-primary m-4">Back</a>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -28,7 +28,7 @@
                 <div class="mb-3">
                     <label class="form-label"> Category Name </label>
                     <input type="text" class="form-control" name="name" placeholder="Enter Category Name"
-                    value="{{$category->name}}" >
+                    value="{{ old('name') ?? $category->name }}" >
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
