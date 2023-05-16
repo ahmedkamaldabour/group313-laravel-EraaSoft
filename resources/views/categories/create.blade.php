@@ -13,11 +13,22 @@
         <div class="mx-auto col-8 m-5">
             <h1>Add New Category</h1>
             <a href="{{url('/categories')}}" class="btn btn-primary m-4">Back</a>
-            <form method="post" action="{{url('/categories')}}" >
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form method="post" action="{{url('/categories')}}">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label"> Category Name </label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter Category Name" >
+                    <input type="text" class="form-control" name="name" value="{{old('name')}}"
+                           placeholder="Enter Category Name">
                 </div>
                 <button type="submit" class="btn btn-primary">Add</button>
             </form>

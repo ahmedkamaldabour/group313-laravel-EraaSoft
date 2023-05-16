@@ -13,6 +13,13 @@
         <div class="mx-auto col-8 m-5">
             <h1>Categories</h1>
             <a href="{{url('/categories/create')}}" class="btn btn-primary">Add New Category</a>
+
+            @if(session()->has('success'))
+                <div class="alert alert-success mt-3">
+                    {{session()->get('success')}}
+                </div>
+            @endif
+
             <table class="table">
                 <thead>
                 <tr>

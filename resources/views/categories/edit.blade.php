@@ -13,6 +13,15 @@
         <div class="mx-auto col-8 m-5">
             <h1>Add New Category</h1>
             <a href="{{url('/categories')}}" class="btn btn-primary m-4">Back</a>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="post" action="{{url('/categories/'.$category->id)}}" >
                 @csrf
                 @method('put')
