@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use function redirect;
@@ -13,13 +14,13 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        $categories = Category::get();
+        return view('Admin.pages.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('categories.create');
+        return view('Admin.pages.categories.create');
     }
 
     public function store(Request $request)
@@ -41,7 +42,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        return view('Admin.pages.categories.edit', compact('category'));
     }
 
     public function update(Request $request, $id)

@@ -13,4 +13,9 @@ class DashboardController extends Controller
         return view('Admin.index');
     }
 
+    public function loginPage()
+    {
+        return view('Admin.pages.login.adminLogin');
+    }
+
 }
