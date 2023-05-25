@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::get();
+        $products = Product::paginate();
         return view('Admin.pages.products.index', compact('products'));
     }
 
@@ -37,6 +37,14 @@ class ProductController extends Controller
             'category_id' => $request->category_id,
             'image' => 'product.png',
         ]);
-        return redirect()->route('products.index')->with('success', 'Product has been created successfully');
+        return redirect()->route('products.index')
+            ->with('success', 'Product has been created successfully');
+    }
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::get();
+        return view('Admin.pages.products.edit', compact('product', 'categories'));
     }
 }

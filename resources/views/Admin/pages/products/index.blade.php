@@ -56,20 +56,22 @@
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->category->name}}</td>
-{{--                            <td>--}}
-{{--                                <a href="{{url('/categories/'.$category->id.'/edit')}}" class="btn btn-primary">Edit</a>--}}
-{{--                                <form method="post" action="{{url('/categories/delete/'.$category->id)}}" class="d-inline">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('delete')--}}
-{{--                                    <button type="submit" class="btn btn-danger">Delete</button>--}}
-{{--                                </form>--}}
-{{--                            </td>--}}
+                            <td>
+                                <a href="{{ route( 'products.edit',$product->id ) }}" class="btn btn-info">Edit</a>
+                                <form method="post" action="{{url('/products/'.$product->id)}}" class="d-inline-block">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-
             </div><!-- /.container-fluid -->
+            {{$products->links()}}
+
         </section>
         <!-- /.content -->
     </div>

@@ -17,6 +17,12 @@
             <div class='info'>
                 <a href='#' class='d-block'>Alexander Pierce</a>
             </div>
+            <br>
+{{--            // logout form--}}
+            <form action="{{route('admin.logout')}}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
         </div>
 
         <nav class='mt-2'>
