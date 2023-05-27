@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">All Products</h1>
+                        <h1 class="m-0">Update Product</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,39 +40,44 @@
                     </div>
                 @endif
 
-                <form role="form" method="post" action="{{route('products.store')}}" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{route('products.update',$product)}}"
+                      enctype="multipart/form-data">
+                    @method('put')
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label>name</label>
-                            <input type="text" class="form-control" name='name'
+                            <label for="exampleInputEmail1">name</label>
+                            <input type="text" class="form-control" name='name' id="exampleInputEmail1"
+                                   value="{{$product->name}}"
                                    placeholder="Enter Product name">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">description</label>
                             <textarea type="text" class="form-control" name='description' id="exampleInputEmail1"
-                                      placeholder="Enter Product description"></textarea>
+                                      placeholder="Enter Product description">{{$product->description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Price</label>
                             <input type="number" class="form-control" name='price' id="exampleInputEmail1"
+                                   value="{{$product->price}}"
                                    placeholder="Enter Product Price">
                         </div>
                         <label for="exampleInputEmail1">Category</label>
                         <select class="form-control" name="category_id">
                             <option value="">Select Category</option>
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}"
+                                        @selected($category->id == $product->category_id)>{{$category->name}}</option>
                             @endforeach
                         </select>
                         <div class="form-group">
                             <label for="exampleInputFile">Image</label>
                             <div class="input-group">
-                                    <input type="file" class="custom-file-input" name="image" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="custom-file-input" name="image" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                         </div>
-
+                        <img src="{{asset($product::PATH.$product->image)}}" width="100px" height="100px">
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

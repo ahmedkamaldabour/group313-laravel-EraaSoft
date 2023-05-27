@@ -9,7 +9,6 @@ use function view;
 
 class LoginController extends Controller
 {
-
     public function loginPage()
     {
         return view('Admin.pages.login.adminLogin');
@@ -18,7 +17,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
-        if (auth()->attempt($credentials ) && (auth()->user()->role == 'admin')) {
+        if (auth()->attempt($credentials) && (auth()->user()->role == 'admin')) {
             return redirect()->route('admin');
         }
         $this->handleLogout();
@@ -31,8 +30,8 @@ class LoginController extends Controller
         return redirect()->route('admin.loginPage');
     }
 
-
-    private function handleLogout() {
+    private function handleLogout()
+    {
         Auth::logout();
         session()->flush();
         session()->regenerate();

@@ -1,3 +1,4 @@
+@php use App\Models\Product; @endphp
 @extends('Admin.inc.master')
 
 @section('title','Products')
@@ -40,25 +41,28 @@
                     <thead>
                     <tr>
                         <th style="width: 10px">#</th>
-                        {{--                        <th>Image</th>--}}
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
                         <th>Category</th>
-                        {{--                        <th style="width: 40px">Action</th>--}}
+                        <th style="width: 40px">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($products as $product)
                         <tr>
                             <td>{{$loop->iteration}}</td>
+                            <td>
+                                <img src="{{asset(Product::PATH.$product->image)}}" width="100px" height="100px">
+                            </td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->category->name}}</td>
                             <td>
                                 <a href="{{ route( 'products.edit',$product->id ) }}" class="btn btn-info">Edit</a>
-                                <form method="post" action="{{url('/products/'.$product->id)}}" class="d-inline-block">
+                                <form method="post" action="{{route('products.destroy',$product->id)}}">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">Delete</button>
