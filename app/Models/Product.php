@@ -10,6 +10,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    const PATH = '/images/products/';
+
     protected $fillable = [
         'name',
         'description',
@@ -18,7 +20,6 @@ class Product extends Model
         'image',
     ];
 
-    // product belongs to category
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
