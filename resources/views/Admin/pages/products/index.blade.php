@@ -74,7 +74,7 @@
                     </tbody>
                 </table>
             </div><!-- /.container-fluid -->
-            {{$products->links()}}
+{{--            {{$products->links()}}--}}
 
         </section>
         <!-- /.content -->

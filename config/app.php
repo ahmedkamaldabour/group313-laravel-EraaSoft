@@ -162,6 +162,8 @@ return [
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

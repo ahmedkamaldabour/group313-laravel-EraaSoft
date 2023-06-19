@@ -20,6 +20,14 @@ class Product extends Model
         'image',
     ];
 
+    public static function rules (){
+        return [
+            'description' => 'required|string|max:1000|min:3|regex:/^[a-zA-Z0-9\s]+$/',
+            'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+        ];
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
