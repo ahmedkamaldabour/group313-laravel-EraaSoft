@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\traits\ApiTrait;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
 {
+    use ApiTrait;
     /**
      * Handle an incoming request.
      */
@@ -17,6 +19,9 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
         foreach ($guards as $guard) {
+//            if($guard == 'sanctum'){
+//                return $this->apiResponse('401' , 'You Are Already Logged In' , 'null' , 'null');
+//            }
             if (Auth::guard($guard)->check()) {
                 return redirect()->route('admin');
             }

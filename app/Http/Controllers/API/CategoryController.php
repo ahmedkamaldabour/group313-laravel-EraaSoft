@@ -21,22 +21,16 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-//        $validator = Validator::make($request->all(), [
-//            'name' => 'required',
-//        ]);
-//        if ($validator->fails()) {
-//            return $this->apiResponse(422, 'Validation error', $validator->errors(),'null');
-//        }
         $category = Category::create($request->all());
         return $this->apiResponse(200, 'Category created successfully', 'null', $category);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        $category = Category::find($id);
-        if (is_null($category)) {
-            return $this->apiResponse(404, 'Category not found', 'null', 'null');
-        }
+//        $category = Category::find($id);
+//        if (is_null($category)) {
+//            return $this->apiResponse(404, 'Category not found', 'null', 'null');
+//        }
         $category->update($request->all());
         return $this->apiResponse(200, 'Category updated successfully', 'null', $category);
     }
